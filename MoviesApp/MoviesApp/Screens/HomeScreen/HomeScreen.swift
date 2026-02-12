@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @StateObject private var viewModel: HomeScreenVM = HomeScreenVM()
+    
     var body: some View {
         ZStack {
             Color.mainScreenBlue.ignoresSafeArea(edges: .top)
@@ -19,6 +21,11 @@ struct HomeScreen: View {
                     .frame(width: 200, height: 200)
             }
             .padding()
+        }
+        .onAppear {
+            Task {
+                await viewModel.fetchPopular()
+            }
         }
     }
 }

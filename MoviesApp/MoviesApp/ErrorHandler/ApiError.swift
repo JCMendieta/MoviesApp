@@ -11,4 +11,6 @@ enum ApiError: Error {
     case invalidURL
     case noInternet
     case requestFailed
+    case invalidResponse
+    case responseStatusNotSuccessful
 }

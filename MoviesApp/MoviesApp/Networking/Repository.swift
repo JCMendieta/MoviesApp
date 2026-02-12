@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RepositoryProtocol {
-    func fetchMovies()
+    func fetchPopularUser() async throws -> PeopleResponse
 }
 
 class Repository: RepositoryProtocol {
@@ -18,7 +18,8 @@ class Repository: RepositoryProtocol {
         self.servicesManager = servicesManager
     }
     
-    func fetchMovies() {
-        
+    func fetchPopularUser() async throws -> PeopleResponse {
+        let apiUrl = try MoviesEndpoint.popularUser().asUrl()
+        return try await servicesManager.request(apiUrl, entity: PeopleResponse.self)
     }
 }

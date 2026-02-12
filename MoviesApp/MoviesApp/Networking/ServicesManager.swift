@@ -23,10 +23,10 @@ class ServicesManager: ServicesManagerProtocol {
     func request<T>(_ url: URL, entity: T.Type) async throws -> T where T : Decodable {
         do {
             let data = try await apiClient.fetchData(from: url)
-            let entity = try dataDecoder.decode(entity.self, from: data)
-            return entity
+            return try dataDecoder.decode(entity.self, from: data)
         } catch {
-            throw error
+            print("Request error:\(error)")
+            throw ApiError.requestFailed
         }
     }
 }
