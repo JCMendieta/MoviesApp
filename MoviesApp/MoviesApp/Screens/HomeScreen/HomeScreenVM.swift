@@ -14,6 +14,14 @@ class HomeScreenVM: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     
+    var mostPopularUser: Result? {
+        people.first
+    }
+    
+    var mostPopularUserMovies: [KnownFor] {
+        mostPopularUser?.knownFor ?? []
+    }
+    
     init(repository: Repository = Repository()) {
         self.repository = repository
     }
