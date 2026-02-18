@@ -12,8 +12,14 @@ protocol ApiClientProtocol {
 }
 
 class URLSessionAPIClient: ApiClientProtocol {
+    private let session: URLSession
+    
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
+    
     func fetchData(from url: URL) async throws -> Data {
-        let (data, response) = try await URLSession.shared.data(from: url)
+        let (data, response) = try await session.data(from: url)
         guard let httpResponse = response as? HTTPURLResponse else {
             throw ApiError.invalidResponse
         }

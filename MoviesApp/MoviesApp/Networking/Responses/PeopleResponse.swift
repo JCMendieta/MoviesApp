@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct PeopleResponse: Codable {
+struct PeopleResponse: Codable, Equatable {
     let page: Int
     let results: [Result]
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct Result: Codable, Equatable {
     let adult: Bool
     let gender, id: Int
     let knownForDepartment, name, originalName: String
@@ -33,7 +33,7 @@ struct Result: Codable {
 }
 
 // MARK: - KnownFor
-struct KnownFor: Codable {
+struct KnownFor: Codable, Equatable {
     let adult: Bool
     let backdropPath: String?
     let id: Int
