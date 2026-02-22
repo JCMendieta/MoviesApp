@@ -53,3 +53,18 @@ class MockServiceManager: ServicesManagerProtocol {
         return dataToReturn as! T
     }
 }
+
+class MockRepository: RepositoryProtocol {
+    var dataToReturn: PeopleResponse!
+    var errorToThrow: Error?
+    
+    func fetchPopularUser() async throws -> PeopleResponse {
+        
+        if let error = errorToThrow {
+            throw error
+        }
+        
+        return dataToReturn
+    }
+    
+}
