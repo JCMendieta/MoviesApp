@@ -8,7 +8,7 @@
 import Foundation
 
 class HomeScreenVM: ObservableObject {
-    private var repository: Repository
+    private var repository: RepositoryProtocol
     
     @Published var people: [Result] = []
     @Published var isLoading = false
@@ -22,7 +22,7 @@ class HomeScreenVM: ObservableObject {
         mostPopularUser?.knownFor ?? []
     }
     
-    init(repository: Repository = Repository()) {
+    init(repository: RepositoryProtocol = Repository()) {
         self.repository = repository
     }
     
